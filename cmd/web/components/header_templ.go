@@ -345,7 +345,7 @@ func socials() templ.Component {
 		})
 		templ_7745c5c3_Err = button.Button(button.Props{
 			Class:  "bg-blue-400 p-3 h-auto hover:bg-blue-400 text-white",
-			Href:   "http://linkedin.com/in/ajibola-oguntade/",
+			Href:   "http://linkedin.com/in/aj-oguntade/",
 			Target: "_blank",
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var15), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

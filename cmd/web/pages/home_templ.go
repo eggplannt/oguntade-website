@@ -31,7 +31,7 @@ func Home() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"h-screen flex flex-col\"><div class=\"flex lg:pt-40 px-10 lg:px-20 justify-between flex-wrap lg:flex-nowrap\"><div class=\"flex-auto flex-col self-center max-w-[52rem] py-8 lg:py-0\"><p class=\"text-5xl font-bold\">I'm AJ Oguntade,</p><p class=\"text-3xl w-full py-2\">I'm an adaptable full stack engineer versed in many frontend and backend frameworks.</p><div class=\"flex gap-4 py-5 flex-wrap\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"h-screen flex flex-col\"><div class=\"flex lg:pt-40 px-10 lg:px-20 justify-between flex-wrap lg:flex-nowrap\"><div class=\"flex-auto flex-col self-center max-w-[52rem] py-8 lg:py-0\"><p class=\"text-5xl font-bold\">I'm Aj Oguntade,</p><p class=\"text-3xl w-full py-2\">I'm an adaptable full stack engineer versed in many frontend and backend frameworks.</p><div class=\"flex gap-4 py-5 flex-wrap\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
