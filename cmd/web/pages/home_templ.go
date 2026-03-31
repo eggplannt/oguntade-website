@@ -55,7 +55,7 @@ func Home() templ.Component {
 		})
 		templ_7745c5c3_Err = button.Button(button.Props{
 			Class:      "flex-shrink text-lg lg:text-xl",
-			Href:       "http://docs.google.com/document/d/1un5P8FsGaDjT9gW8q74lyM-_3ctDJH2ETph_T5q7eDE/export?format=pdf",
+			Href:       "https://raw.githubusercontent.com/eggplannt/oguntade-website/resume/resume.pdf",
 			Attributes: templ.Attributes{"download": ""},
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
