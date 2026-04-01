@@ -35,11 +35,5 @@ main
 Thumbs.db
 desktop.ini
 
-# Latex
-resume*
-!resume/
-!resume.tex
-!resume.pdf
-
 # If you want to be extra sure for desktop.ini in any subfolder:
 **/desktop.ini
