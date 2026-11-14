@@ -14,7 +14,15 @@ templ Base() {
 			<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png"/>
 			<link rel="manifest" href="/assets/favicon/site.webmanifest"/>
 			<link href="/assets/css/output.css" rel="stylesheet"/>
-			<script defer src="/assets/js/templui.min.js"></script>
+			// Apply the theme before first paint to avoid a light-mode flash
+			<script>
+				(function () {
+					let mode = 'system';
+					try { mode = localStorage.getItem('darkMode') || 'system'; } catch (e) {}
+					const dark = mode === 'dark' || (mode !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+					document.documentElement.classList.toggle('dark', dark);
+				})();
+			</script>
 			<script defer src="/assets/js/alpine.min.js"></script>
 			<script defer src="/assets/js/htmx.min.js"></script>
 			@drawer.Script()
