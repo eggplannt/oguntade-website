@@ -1,59 +1,250 @@
 package pages
 
-import "website/cmd/web/components/card"
+import (
+	"strings"
+
+	"website/cmd/web/components/icon"
+)
+
+type link struct {
+	Label string
+	Href  string
+}
+
+type projectInfo struct {
+	Name   string
+	Kind   string
+	Intro  string
+	Notes  []string
+	Tools  []string
+	Source string
+	Links  []link
+}
+
+type release struct {
+	Version  string
+	Title    string
+	Summary  string
+	Projects []projectInfo
+}
+
+var csus = release{
+	Version: "UP NEXT",
+	Title:   "CSUS Tech Team",
+	Summary: "I just joined the tech team at UCalgary's Computer Science Undergraduate Society, a 3,000+ member club. The team builds and runs the production platforms behind the society and CalgaryHacks.",
+	Projects: []projectInfo{
+		{
+			Name:  "csus.club",
+			Kind:  "production platform",
+			Intro: "The platform the entire society runs on, serving **3,000+** members and about **8,000** page views a month from Cloudflare's edge network.",
+			Notes: []string{
+				"**56** pages of **Next.js 16** and **React 19** in strict **TypeScript**, deployed as a single **Cloudflare Worker**",
+				"**Cloudflare D1** (SQLite) through **Drizzle ORM**, with **R2** for uploads and caching and **KV** for sessions and rate limits",
+				"**Better Auth** with GitHub, Google, Facebook and Discord OAuth",
+				"**12** cron jobs on **Cloudflare Cron Triggers**, email through **Resend** and **Web Push** notifications",
+				"Tested with **Vitest** and **Playwright**, monitored with **Sentry**, deployed on every merge to main",
+			},
+			Tools: []string{"Next.js 16", "React 19", "TypeScript", "Cloudflare Workers", "D1", "R2", "KV", "Drizzle ORM", "Better Auth", "Sentry", "Vitest", "Playwright"},
+			Links: []link{
+				{"csus.club", "https://csus.club"},
+			},
+		},
+		{
+			Name:  "calgaryhacks.ca",
+			Kind:  "event platform",
+			Intro: "The platform behind CalgaryHacks, one of the biggest hackathons in Calgary, rebuilt to run the entire event end to end for hackers, volunteers, judges, sponsors and organizers.",
+			Notes: []string{
+				"**Next.js 16** App Router, **React 19** and strict **TypeScript** on **Cloudflare Workers**",
+				"**D1** with **Drizzle ORM**, **KV** rate limiting and **R2** for uploads and page caching",
+				"**Better Auth** for passwords, magic links, GitHub and Google, with **Turnstile** bot protection",
+				"**Resend** email, **Sentry** error tracking and **Cron Triggers** for scheduled jobs",
+				"CI runs **Vitest**, plus **Playwright** and **axe** end-to-end and accessibility tests against the Worker build",
+			},
+			Tools: []string{"Next.js 16", "React 19", "TypeScript", "Cloudflare Workers", "D1", "R2", "KV", "Drizzle ORM", "Better Auth", "Resend", "Turnstile", "Sentry", "Playwright", "axe"},
+			Links: []link{
+				{"calgaryhacks.ca", "https://calgaryhacks.ca"},
+			},
+		},
+	},
+}
+
+var releases = []release{
+	{
+		Version: "2026",
+		Projects: []projectInfo{
+			{
+				Name:  "Pawnki",
+				Kind:  "web + android",
+				Intro: "A chess opening trainer built on the same spaced-repetition algorithm as Anki, live at pawnki.com with an Android app.",
+				Notes: []string{
+					"**React 19** + **Vite** web app and an **Expo** / **React Native** Android app",
+					"**Bun** workspace monorepo sharing the SM-2 engine, PGN parser and tree logic in **TypeScript**",
+					"**Supabase** backend: **PostgreSQL** with row-level security and Google OAuth",
+					"**Tailwind** on web, **NativeWind** on mobile, chess rules from **chess.js**",
+				},
+				Tools:  []string{"React 19", "Vite", "Expo", "React Native", "TypeScript", "Tailwind", "NativeWind", "Supabase", "PostgreSQL", "Row-Level Security", "chess.js", "Bun"},
+				Source: "https://github.com/eggplannt/Pawnki",
+				Links: []link{
+					{"pawnki.com", "https://pawnki.com"},
+					{"android apk", "https://github.com/eggplannt/Pawnki/releases"},
+				},
+			},
+			{
+				Name:  "The Internet Cafe",
+				Kind:  "web app",
+				Intro: "Social matchmaking for gamers that never exposes anyone's hobbies, not even to their own squad.",
+				Notes: []string{
+					"**React** + **Vite** + **TypeScript** frontend deployed on **Vercel**",
+					"**Supabase PostgreSQL** with row-level security on every table",
+					"**Deno Edge Functions** on cron schedules running a Jaccard-similarity matching engine",
+					"Live chat over **Supabase Realtime**",
+					"LLM conversation starters from **gpt-oss-120b** on **Groq**, unit-tested with **Deno**",
+				},
+				Tools:  []string{"React", "Vite", "TypeScript", "Tailwind", "Supabase", "PostgreSQL", "Realtime", "Deno Edge Functions", "Groq", "Vercel"},
+				Source: "https://github.com/eggplannt/The-Internet-Cafe",
+			},
+		},
+	},
+	{
+		Version: "2025",
+		Projects: []projectInfo{
+			{
+				Name:  "composite-highlighting.nvim",
+				Kind:  "neovim plugin",
+				Intro: "A Neovim plugin that gives template files two layers of syntax highlighting at once.",
+				Notes: []string{
+					"Written in **Lua** against the **Neovim** API",
+					"Hooks into **Treesitter** to inject a second language parser at runtime",
+					"Works with **gotmpl**, **eruby**, **jinja** and other template grammars",
+				},
+				Tools:  []string{"Lua", "Neovim API", "Treesitter"},
+				Source: "https://github.com/eggplannt/composite-highlighting.nvim",
+			},
+			{
+				Name:  "OpenChessTrainer",
+				Kind:  "desktop",
+				Intro: "An open source, cross-platform desktop chess trainer written from scratch in C++.",
+				Notes: []string{
+					"Written from scratch in **C++**",
+					"Rendering and input on **SDL3**",
+					"Cross-platform build with **CMake**",
+				},
+				Tools:  []string{"C++", "SDL3", "CMake"},
+				Source: "https://github.com/eggplannt/OpenChessTrainer",
+			},
+			{
+				Name:  "Function",
+				Kind:  "mobile",
+				Intro: "A social media app for local events.",
+				Notes: []string{
+					"Cross-platform mobile app in **Flutter** and **Dart**",
+					"**Firebase** for auth and data",
+				},
+				Tools: []string{"Flutter", "Dart", "Firebase"},
+			},
+		},
+	},
+	{
+		Version: "2024",
+		Projects: []projectInfo{
+			{
+				Name:  "Transit Monkey",
+				Kind:  "mobile",
+				Intro: "A trip planning and transit information app.",
+				Notes: []string{
+					"Cross-platform **Flutter** client",
+					"**Go** API serving the transit data",
+					"CLI that compiles **GTFS** transit feeds into **SQLite** databases",
+				},
+				Tools: []string{"Flutter", "Dart", "Go", "GTFS", "SQLite"},
+			},
+		},
+	},
+}
 
 templ Projects() {
-	<div class="flex justify-center pt-16 px-10">
-		<div class="grid grid-cols-[repeat(auto-fit,minmax(250px,500px))] w-full justify-center gap-5 gap-y-15">
-			@project(
-				"Function",
-				[]string{"Flutter", "Firebase"},
-			) {
-				A Flutter social media app with Firebase, enabling event posting, discovery, and user profiles.
-			}
-			@project(
-				"Transit Monkey",
-				[]string{"Flutter", "Golang", "GTFS", "SQLite"},
-			) {
-				A user-friendly trip planning and transit information app with an efficient Golang API and a CLI database builder
-				for
-				GTFS-to-SQLite conversion.
-			}
-			@project(
-				"composite-highlighing.nvim",
-				[]string{"Lua", "Neovim", "Treesitter"},
-			) {
-				An open source neovim plugin for composite syntax highlighting
-			}
-			@project(
-				"OpenChessTrainer",
-				[]string{"C++", "SDL3"},
-			) {
-				An open source cross platform chess training application built with SDL3
-			}
-			<p class="flex items-end text-4xl p-3 text-foreground/50">...Ongoing</p>
-		</div>
+	<div class="px-10 lg:px-20 pt-10 pb-24">
+		<h1 class="text-4xl font-bold">Projects</h1>
+		@releaseBlock(csus, true)
+		for _, r := range releases {
+			@releaseBlock(r, false)
+		}
+		<p class="mt-12 text-muted-foreground">
+			Older builds on <a class="text-yellow-700 dark:text-primary underline underline-offset-4 hover:no-underline" href="https://github.com/eggplannt" target="_blank">GitHub</a>
+		</p>
 	</div>
 }
 
-templ project(name string, tools []string) {
-	@card.Card(card.Props{Class: "flex flex-col justify-between bg-accent max-w-[600px]"}) {
-		@card.Header() {
-			@card.Title(card.TitleProps{Class: "text-3xl"}) {
-				{ name }
+templ releaseBlock(r release, upcoming bool) {
+	<section class="mt-14">
+		<div class="flex flex-col items-start gap-3">
+			<span class="text-3xl font-bold">
+				if upcoming {
+					<span class="text-yellow-700 dark:text-primary"><span class="underline decoration-2 underline-offset-8">{ r.Version }</span></span>
+				} else {
+					<span class="rounded bg-primary px-3 py-1 text-primary-foreground">{ r.Version }</span>
+				}
+			</span>
+			if r.Title != "" {
+				<span class="text-3xl font-bold">{ r.Title }</span>
 			}
-			@card.Description(card.DescriptionProps{Class: "text-xl"}) {
-				{ children... }
-			}
+		</div>
+		if r.Summary != "" {
+			<p class="mt-4 max-w-4xl text-lg text-muted-foreground">{ r.Summary }</p>
 		}
-		@card.Content(card.ContentProps{Class: "self-start"}) {
-			<div class="flex flex-wrap items-end gap-2">
-				for _, tool := range tools {
-					<div class="rounded-sm bg-primary text-background/80 text-center text-xl font-semibold p-1.5">
-						{ tool }
-					</div>
+		<div class="mt-6 grid gap-8 lg:grid-cols-2">
+			for _, p := range r.Projects {
+				@entry(p)
+			}
+		</div>
+	</section>
+}
+
+templ entry(p projectInfo) {
+	<article class="flex flex-col rounded-lg bg-accent p-6 md:p-8">
+		<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+			<h3 class="text-2xl md:text-3xl font-bold break-words">{ p.Name }</h3>
+			<div class="flex items-center gap-4">
+				<span class="text-sm text-muted-foreground">{ p.Kind }</span>
+				if p.Source != "" {
+					<a class="text-muted-foreground hover:text-foreground" href={ templ.SafeURL(p.Source) } target="_blank" aria-label="Source on GitHub" title="Source on GitHub">
+						@icon.Github(icon.Props{Size: 24})
+					</a>
 				}
 			</div>
+		</div>
+		<p class="mt-2 text-lg text-muted-foreground">
+			@rich(p.Intro)
+		</p>
+		<ul class="mt-5 grow list-disc space-y-2 pl-5 marker:text-yellow-700 dark:marker:text-primary">
+			for _, note := range p.Notes {
+				<li>
+					@rich(note)
+				</li>
+			}
+		</ul>
+		<ul class="mt-6 flex flex-wrap gap-2 text-sm">
+			for _, tool := range p.Tools {
+				<li class="rounded border border-foreground/15 px-2 py-1 text-foreground/80">{ tool }</li>
+			}
+		</ul>
+		if len(p.Links) > 0 {
+			<div class="mt-5 flex flex-wrap gap-4 border-t border-border pt-4">
+				for _, l := range p.Links {
+					<a class="text-yellow-700 dark:text-primary underline underline-offset-4 hover:no-underline" href={ templ.SafeURL(l.Href) } target="_blank">{ l.Label }</a>
+				}
+			</div>
+		}
+	</article>
+}
+
+// rich renders text with **double-asterisk** segments in bold.
+templ rich(text string) {
+	for i, part := range strings.Split(text, "**") {
+		if i%2 == 1 {
+			<strong class="font-bold text-foreground">{ part }</strong>
+		} else {
+			{ part }
 		}
 	}
 }

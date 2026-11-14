@@ -2,13 +2,18 @@ package pages
 
 import "website/cmd/web/components/button"
 
+const homeLink = "text-yellow-700 dark:text-primary underline underline-offset-4 hover:no-underline"
+
+var homeStack = []string{"Go", "TypeScript", "React", "Next.js", "Flutter", "Supabase", "PostgreSQL", "Cloudflare Workers", "C++", "Lua"}
+
 templ Home() {
-	<div class="h-screen flex flex-col">
+	<div class="min-h-screen flex flex-col">
 		<div class="flex lg:pt-40 px-10 lg:px-20 justify-between flex-wrap lg:flex-nowrap">
 			<div class="flex-auto flex-col self-center max-w-[52rem] py-8 lg:py-0">
-				<p class="text-5xl font-bold">I'm Aj Oguntade,</p>
+				<p class="text-lg font-medium text-yellow-700 dark:text-primary">Computer Science @ UCalgary</p>
+				<p class="mt-2 text-5xl font-bold">I'm Aj Oguntade,</p>
 				<p class="text-3xl w-full py-2">
-					I'm an adaptable full stack engineer versed in many frontend and backend frameworks.
+					I'm an adaptable full stack developer versed in many frontend and backend frameworks.
 				</p>
 				<div class="flex gap-4 py-5 flex-wrap">
 					@button.Button(button.Props{
@@ -34,9 +39,28 @@ templ Home() {
 						See how I made this site
 					}
 				</div>
+				<div class="mt-4">
+					<h2 class="text-lg font-semibold text-muted-foreground">Currently</h2>
+					<ul class="mt-3 list-disc space-y-2 pl-5 text-lg marker:text-yellow-700 dark:marker:text-primary">
+						<li>
+							Joining the <strong>CSUS tech team</strong>, working on <a class={ homeLink } href="https://csus.club" target="_blank">csus.club</a> and <a class={ homeLink } href="https://calgaryhacks.ca" target="_blank">calgaryhacks.ca</a>
+						</li>
+						<li>
+							Building <a class={ homeLink } href="https://pawnki.com" target="_blank">Pawnki</a>, a spaced-repetition chess opening trainer
+						</li>
+					</ul>
+				</div>
+				<div class="mt-8">
+					<h2 class="text-lg font-semibold text-muted-foreground">Usually writing</h2>
+					<ul class="mt-3 flex flex-wrap gap-2">
+						for _, tool := range homeStack {
+							<li class="rounded border border-foreground/15 px-2 py-1 text-foreground/80">{ tool }</li>
+						}
+					</ul>
+				</div>
 			</div>
 			<div class="flex-auto relative w-full max-w-[600px] aspect-square mx-auto overflow-hidden rounded-full mb-10 lg:mb-0">
-				<img class="absolute h-full w-full object-cover object-top" src="/assets/img/photo.jpg"/>
+				<img class="absolute h-full w-full object-cover object-top" src="/assets/img/photo.jpeg"/>
 			</div>
 		</div>
 	</div>

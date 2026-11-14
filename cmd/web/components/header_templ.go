@@ -67,7 +67,7 @@ func Header() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"hidden md:flex\"><div class=\"flex gap-4 bg-accent border-1 rounded-lg p-1.5 text-xl\" x-data=\"{path: ''}\" x-init=\"path = window.location.pathname\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"hidden md:flex\"><div class=\"flex gap-1 rounded-lg bg-accent p-1 text-lg\" x-data=\"{path: ''}\" x-init=\"path = window.location.pathname\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -121,7 +121,7 @@ func tab(name string, class string) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		href := "/" + strings.ToLower(name)
-		var templ_7745c5c3_Var4 = []any{utils.TwMerge("p-1 cursor-pointer rounded-md w-full", class)}
+		var templ_7745c5c3_Var4 = []any{utils.TwMerge("w-full cursor-pointer rounded-md px-4 py-1 font-medium", class)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -144,9 +144,9 @@ func tab(name string, class string) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf(" path === '%s' ? 'bg-primary text-primary-foreground' : 'bg-transparent text-foreground'", href))
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf(" path === '%s' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'", href))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `cmd/web/components/header.templ`, Line: 39, Col: 120}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `cmd/web/components/header.templ`, Line: 39, Col: 133}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
