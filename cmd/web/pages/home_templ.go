@@ -118,7 +118,7 @@ func Home() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div><div class=\"mt-4\"><h2 class=\"text-lg font-semibold text-muted-foreground\">Currently</h2><ul class=\"mt-3 list-disc space-y-2 pl-5 text-lg marker:text-yellow-700 dark:marker:text-primary\"><li>Joining the <strong>CSUS tech team</strong>, working on ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div><div class=\"mt-4\"><h2 class=\"text-lg font-semibold text-muted-foreground\">Currently</h2><ul class=\"mt-3 list-disc space-y-2 pl-5 text-lg marker:text-yellow-700 dark:marker:text-primary\"><li>Vice President of Technology at <strong>CSUS</strong>, leading the team behind ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
